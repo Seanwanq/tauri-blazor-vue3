@@ -1,0 +1,25 @@
+﻿@inherits LayoutComponentBase
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+<div class="page">
+    <div class="sidebar">
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4" id="app" v-cloak>
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JS.InvokeVoidAsync("newVueApp");
+    }
+}
